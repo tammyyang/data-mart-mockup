@@ -359,7 +359,7 @@ header {
 }
 
 footer {
-    background-color: var(--white);
+    background-color: var(--light-bg);
     color: var(--white);
     padding: 4rem 0 2rem;
 }
@@ -412,7 +412,7 @@ footer {
 }
 
 .footer {
-    background-color: var(--white);
+    background-color: var(--light-bg);
     color: var(--white);
     padding: 1rem 0;
     text-align: center;
@@ -428,4 +428,5 @@ footer {
 .footer p {
     font-size: 1rem;
     color: var(--primary-color);
+    text-align: center;
 }
