@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaptureMart - Your AI-Ready Content Collection Platform</title>
+    <style>
+        :root {
+            --primary-color: #027fe5;
+            --secondary-color: #6ebff2;
+            --light-bg: #f9fafb;
+            --dark-text: #1f2937;
+            --light-text: #6b7280;
+            --white: #ffffff;
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .dataset-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            margin-left: auto;
+            margin-right: 2rem;
+        }
+        
+        .nav-link {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .btn-outline {
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+            min-width: 80px;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .btn-primary {
+            background-color: #027fe5;
+            color: var(--white);
+            border: 1px solid #027fe5;
+        }
+        
+        .card-btn:hover {
+            border-color: #d17dff;
+        }
+        
+        .card-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn-primary:hover {
+            background-color: #d17dff;
+            border-color: #d17dff;
+        }
+        
+        .page-header {
+            padding: 3rem 0 2rem;
+            background-color: var(--white);
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .page-desc {
+            font-size: 1.125rem;
+            color: var(--light-text);
+            max-width: 700px;
+        }
+        
+        .collection {
+            padding: 2rem 0 5rem;
+        }
+        
+        .search-container {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.75rem;
+            border-radius: 0.375rem;
+            border: 1px solid #e5e7eb;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .search-box:focus {
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+            border-color: var(--primary-color);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--light-text);
+            font-size: 1.25rem;
+        }
+        
+        .dataset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .dataset-card {
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            background-color: var(--white);
+            border: 1px solid #e5e7eb;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .dataset-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dataset-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background-color: #f3f4f6;
+        }
+        
+        .dataset-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        
+        .dataset-provider {
+            font-size: 0.875rem;
+            color: var(--light-text);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .provider-logo {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #f3f4f6;
+        }
+        
+        .dataset-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--dark-text);
+        }
+        
+        .dataset-desc {
+            font-size: 0.95rem;
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .dataset-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+            color: var(--light-text);
+        }
+        
+        .dataset-popularity {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .dataset-price {
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+        
+        .model-container {
+            margin-bottom: 0.75rem;
+        }
+        
+        .model-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .model-badge.subscription {
+            background-color: #ebf8ff;
+            color: #3182ce;
+        }
+        
+        .model-badge.one-time {
+            background-color: #f0fff4;
+            color: #38a169;
+        }
+        
+        .model-badge.free {
+            background-color: #e6fffa;
+            color: #319795;
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+        }
+        
+        .website-link, .contact-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .website-link:hover, .contact-link:hover {
+            text-decoration: underline;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tag {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            background-color: #f3f4f6;
+            color: var(--light-text);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+            gap: 0.5rem;
+        }
+        
+        .page-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.375rem;
+            border: 1px solid #e5e7eb;
+            background-color: var(--white);
+            color: var(--dark-text);
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .page-link:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .page-link.active {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        footer {
+            background-color: var(--dark-text);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-link {
+            display: block;
+            color: #d1d5db;
+            margin-bottom: 0.75rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-link:hover {
+            color: var(--white);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.95rem;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--light-text);
+            font-style: italic;
+        }
+        
+        .error {
+            text-align: center;
+            padding: 2rem;
+            color: #e53e3e;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="https://numbersprotocol.io" class="logo">CaptureMart</a>
+                <div class="nav-links">
+                    <a href="#" class="nav-link">About</a>
+                </div>
+                <div class="buttons">
+                    <a href="#" class="btn btn-outline">Log in</a>
+                    <a href="#" class="btn btn-primary" style="min-width: 100px;">Sign up</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Your AI-Ready Content Collection Platform</h1>
+            <p class="page-desc">Browse through our curated collection of high-quality AI-ready content from trusted providers</p>
+        </div>
+    </section>
+
+    <section class="collection">
+        <div class="container">
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="Tell AI what data you need.">
+                <span class="search-icon">🔍</span>
+            </div>
+            
+            <div class="dataset-grid" id="dataset-container">
+        <!-- Dataset cards will be dynamically inserted here -->
+        <div class="loading">Loading datasets...</div>
+    </div>
+
+    <script>
+        // Sample collections.json data structure that would normally be fetched
+        const collectionsData = {
+            "collections": [
+                {
+                    "id": "1",
+                    "provider": "Kate Peters",
+                    "title": "Kate Peters - free",
+                    "description": "The free collection of Kate Peters's photography.",
+                    "popularity": 5,
+                    "model": "free",
+                    "price": "Free",
+                    "image": "/api/placeholder/400/200",
+                    "tags": ["Photography", "Human", "History"],
+                    "website": "https://www.katepeters.co.uk/",
+                    "contact": "info@katepeters.co.uk"
+                },
+                {
+                    "id": "2",
+                    "provider": "Kate Peters",
+                    "title": "Kate Peters - full",
+                    "description": "The full collection of Kate Peters's photography.",
+                    "popularity": 5,
+                    "model": "subscription",
+                    "price": "$1,499",
+                    "image": "/api/placeholder/400/200",
+                    "tags": ["Photography", "Human", "History"],
+                    "website": "https://www.katepeters.co.uk/",
+                    "contact": "info@katepeters.co.uk"
+                },
+                {
+                    "id": "3",
+                    "title": "Financial Market Intelligence",
+                    "provider": "Bloomberg",
+                    "description": "Real-time and historical financial data, market indicators, and analytics for investment decision-making.",
+                    "popularity": 4.9,
+                    "model": "subscription",
+                    "price": "$3,499",
+                    "tags": ["Finance", "Investment", "Markets"],
+                    "image": "/api/placeholder/400/200",
+                    "website": "https://www.bloomberg.com/",
+                    "contact": "info@bloomberg.com"
+                },
+                {
+                    "id": "4",
+                    "title": "Social Media Analytics 2024",
+                    "provider": "Hootsuite",
+                    "description": "Comprehensive social media engagement data, audience demographics, and content performance metrics across major platforms.",
+                    "popularity": 4.5,
+                    "model": "one-time",
+                    "price": "$1,299",
+                    "tags": ["Social Media", "Marketing", "Digital"],
+                    "image": "/api/placeholder/400/200",
+                    "website": "https://www.hootsuite.com/",
+                    "contact": "info@hootsuite.com"
+                },
+                {
+                    "id": "5",
+                    "title": "Healthcare Industry Trends",
+                    "provider": "IQVIA",
+                    "description": "Analysis of healthcare market dynamics, patient demographics, treatment patterns, and pharmaceutical sales data.",
+                    "popularity": 4.7,
+                    "model": "subscription",
+                    "price": "$2,799",
+                    "tags": ["Healthcare", "Pharma", "Research"],
+                    "image": "/api/placeholder/400/200",
+                    "website": "https://www.iqvia.com/",
+                    "contact": "info@iqvia.com"
+                },
+                {
+                    "id": "6",
+                    "title": "Global Supply Chain Data",
+                    "provider": "Dun & Bradstreet",
+                    "description": "Comprehensive insights into supply chain networks, logistics operations, and international trade flows across industries.",
+                    "popularity": 4.6,
+                    "model": "one-time",
+                    "price": "$2,199",
+                    "tags": ["Supply Chain", "Logistics", "Global Trade"],
+                    "image": "/api/placeholder/400/200",
+                    "website": "https://www.dnb.com/",
+                    "contact": "info@dnb.com"
+                },
+                {
+                    "id": "7",
+                    "title": "AI and Machine Learning Trends",
+                    "provider": "Gartner",
+                    "description": "Analysis of artificial intelligence adoption, emerging technologies, and implementation patterns across industries.",
+                    "popularity": 4.8,
+                    "model": "subscription",
+                    "price": "$3,299",
+                    "tags": ["AI", "Technology", "Research"],
+                    "image": "/api/placeholder/400/200",
+                    "website": "https://www.gartner.com/",
+                    "contact": "info@gartner.com"
+                },
+                {
+                    "id": "8",
+                    "title": "Real Estate Market Analytics",
+                    "provider": "Zillow",
+                    "description": "Comprehensive property value data, market trends, and buyer demographics across major metropolitan areas.",
+                    "popularity": 4.5,
+                    "model": "one-time",
+                    "price": "$1,899",
+                    "tags": ["Real Estate", "Property", "Markets"],
+                    "image": "/api/placeholder/400/200",
+                    "website": "https://www.zillow.com/",
+                    "contact": "info@zillow.com"
+                },
+                {
+                    "id": "9",
+                    "title": "Sustainability and ESG Metrics",
+                    "provider": "MSCI",
+                    "description": "Comprehensive environmental, social, and governance data for corporate sustainability analysis and investment decisions.",
+                    "popularity": 4.7,
+                    "model": "subscription",
+                    "price": "$2,499",
+                    "tags": ["ESG", "Sustainability", "Corporate"],
+                    "image": "/api/placeholder/400/200",
+                    "website": "https://www.msci.com/",
+                    "contact": "info@msci.com"
+                },
+                {
+                    "id": "10",
+                    "title": "Retail Foot Traffic Analytics",
+                    "provider": "Placer.ai",
+                    "description": "Real-time and historical visitor data for retail locations, shopping centers, and commercial districts across major markets.",
+                    "popularity": 4.6,
+                    "model": "subscription",
+                    "price": "$1,999",
+                    "tags": ["Retail", "Foot Traffic", "Location"],
+                    "image": "/api/placeholder/400/200",
+                    "website": "https://www.placer.ai/",
+                    "contact": "info@placer.ai"
+                },
+                {
+                    "id": "11",
+                    "title": "Travel and Tourism Insights",
+                    "provider": "STR Global",
+                    "description": "Comprehensive travel patterns, hospitality industry metrics, and tourism trends across global destinations.",
+                    "popularity": 4.5,
+                    "model": "one-time",
+                    "price": "$2,199",
+                    "tags": ["Travel", "Tourism", "Hospitality"],
+                    "image": "/api/placeholder/400/200",
+                    "website": "https://str.com/",
+                    "contact": "info@str.com"
+                },
+                {
+                    "id": "12",
+                    "title": "Automotive Industry Data",
+                    "provider": "IHS Markit",
+                    "description": "Vehicle sales statistics, consumer preferences, and manufacturing trends across global automotive markets.",
+                    "popularity": 4.8,
+                    "model": "subscription",
+                    "price": "$2,899",
+                    "tags": ["Automotive", "Manufacturing", "Industry"],
+                    "image": "/api/placeholder/400/200",
+                    "website": "https://ihsmarkit.com/",
+                    "contact": "info@ihsmarkit.com"
+                },
+                {
+                    "id": "13",
+                    "title": "Energy Market Trends",
+                    "provider": "S&P Global Platts",
+                    "description": "Comprehensive data on energy production, consumption patterns, pricing dynamics, and renewable transitions globally.",
+                    "popularity": 4.7,
+                    "model": "one-time",
+                    "price": "$3,199",
+                    "tags": ["Energy", "Utilities", "Commodities"],
+                    "image": "/api/placeholder/400/200",
+                    "website": "https://www.katepeters.co.uk/",
+                    "contact": "info@katepeters.co.uk"
+                },
+                {
+                    "id": "14",
+                    "title": "Food and Beverage Consumer Trends",
+                    "provider": "Mintel",
+                    "description": "Analysis of eating habits, product preferences, and emerging dietary patterns across consumer segments.",
+                    "popularity": 4.6,
+                    "model": "subscription",
+                    "price": "$1,799",
+                    "tags": ["Food", "Beverage", "Consumer"],
+                    "image": "/api/placeholder/400/200",
+                    "website": "https://www.mintel.com/",
+                    "contact": "info@mintel.com"
+                },
+                {
+                    "id": "15",
+                    "title": "Telecommunications Market Data",
+                    "provider": "Omdia",
+                    "description": "Comprehensive analysis of network usage, subscriber demographics, and technology adoption across telecom sectors.",
+                    "rating": 4.5,
+                    "price": "$2,599",
+                    "tags": ["Telecom", "Connectivity", "Technology"],
+                    "image": "/api/placeholder/400/200"
+                },
+                {
+                    "id": "16",
+                    "title": "Digital Advertising Benchmarks",
+                    "provider": "eMarketer",
+                    "description": "Comprehensive performance metrics, consumer engagement data, and ROI analysis across digital marketing channels.",
+                    "rating": 4.6,
+                    "price": "$1,899",
+                    "tags": ["Advertising", "Digital", "Marketing"],
+                    "image": "/api/placeholder/400/200"
+                },
+                {
+                    "id": "17",
+                    "title": "Cybersecurity Threat Intelligence",
+                    "provider": "Mandiant",
+                    "description": "Advanced threat analysis, vulnerability assessments, and cybersecurity incident data across global networks.",
+                    "rating": 4.9,
+                    "price": "$3,599",
+                    "tags": ["Cybersecurity", "IT", "Security"],
+                    "image": "/api/placeholder/400/200"
+                },
+                {
+                    "id": "18",
+                    "title": "Urban Mobility Patterns",
+                    "provider": "Moovit",
+                    "description": "Transportation metrics, commuting behaviors, and urban movement patterns across major metropolitan areas.",
+                    "rating": 4.5,
+                    "price": "$1,699",
+                    "tags": ["Urban", "Transportation", "Mobility"],
+                    "image": "/api/placeholder/400/200"
+                },
+                {
+                    "id": "19",
+                    "title": "Agricultural Market Intelligence",
+                    "provider": "Gro Intelligence",
+                    "description": "Comprehensive agricultural production data, commodity pricing, and climate impact analysis for food systems.",
+                    "rating": 4.7,
+                    "price": "$2,399",
+                    "tags": ["Agriculture", "Commodities", "Food"],
+                    "image": "/api/placeholder/400/200"
+                },
+                {
+                    "id": "20",
+                    "title": "Education Technology Metrics",
+                    "provider": "HolonIQ",
+                    "description": "Learning engagement statistics, education technology adoption, and student performance analytics across institutions.",
+                    "rating": 4.6,
+                    "price": "$1,799",
+                    "tags": ["Education", "Technology", "EdTech"],
+                    "image": "/api/placeholder/400/200"
+                }
+            ]
+        };
+
+        // Function to render stars based on popularity
+        function renderStars(popularity) {
+            // Handle undefined or null values
+            if (popularity === undefined || popularity === null) {
+                return 'No rating';
+            }
+            
+            const fullStars = Math.floor(popularity);
+            const halfStar = popularity % 1 >= 0.5;
+            const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+            
+            let stars = '';
+            for (let i = 0; i < fullStars; i++) {
+                stars += '★';
+            }
+            if (halfStar) {
+                stars += '★';
+            }
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '☆';
+            }
+            
+            return stars + ' ' + popularity.toFixed(1);
+        }
+
+        // Function to create a dataset card
+        function createDatasetCard(dataset) {
+            let modelBadge = '';
+            
+            if (dataset.model === 'subscription') {
+                modelBadge = '<span class="model-badge subscription">Subscription</span>';
+            } else if (dataset.model === 'one-time') {
+                modelBadge = '<span class="model-badge one-time">One-time</span>';
+            } else if (dataset.model === 'free') {
+                modelBadge = '<span class="model-badge free">Free</span>';
+            }
+            
+            // Format price display based on model type
+            let priceDisplay = dataset.price;
+            if (dataset.model === 'subscription') {
+                priceDisplay = `${dataset.price}/month`;
+            }
+                
+            return `
+                <div class="dataset-card">
+                    <img src="${dataset.image}" alt="${dataset.title} dataset" class="dataset-img">
+                    <div class="dataset-content">
+                        <div class="dataset-provider">
+                            <span class="provider-logo"></span>
+                            ${dataset.provider}
+                        </div>
+                        <h3 class="dataset-title">${dataset.title}</h3>
+                        <p class="dataset-desc">${dataset.description}</p>
+                        <div class="dataset-meta">
+                            <div class="dataset-popularity">${renderStars(dataset.popularity)}</div>
+                            <div class="dataset-price">${priceDisplay}</div>
+                        </div>
+                        <div class="model-container">
+                            ${modelBadge}
+                        </div>
+                        <div class="tags">
+                            ${dataset.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                        <a href="${dataset.website}" target="_blank" class="btn btn-primary card-btn">Request Access</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to render all datasets from the JSON data
+        function renderDatasets(data) {
+            const container = document.getElementById('dataset-container');
+            container.innerHTML = ''; // Clear loading message
+            
+            data.collections.forEach(dataset => {
+                const card = createDatasetCard(dataset);
+                container.innerHTML += card;
+            });
+        }
+
+        // Function to fetch the collections data
+        function fetchCollections() {
+            // In a real implementation, this would be:
+            // fetch('collections.json')
+            //   .then(response => response.json())
+            //   .then(data => renderDatasets(data))
+            //   .catch(error => {
+            //     console.error('Error fetching collections:', error);
+            //     document.getElementById('dataset-container').innerHTML = 
+            //       '<div class="error">Failed to load datasets. Please try again later.</div>';
+            //   });
+            
+            // For this demo, we'll use our sample data directly
+            setTimeout(() => {
+                renderDatasets(collectionsData);
+            }, 500); // Simulate a network delay
+        }
+
+        // Search functionality
+        function setupSearch() {
+            const searchBox = document.querySelector('.search-box');
+            searchBox.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                
+                const filteredData = {
+                    collections: collectionsData.collections.filter(dataset => 
+                        dataset.title.toLowerCase().includes(searchTerm) ||
+                        dataset.description.toLowerCase().includes(searchTerm) ||
+                        dataset.provider.toLowerCase().includes(searchTerm) ||
+                        dataset.tags.some(tag => tag.toLowerCase().includes(searchTerm)) ||
+                        dataset.model.toLowerCase().includes(searchTerm)
+                    )
+                };
+                
+                renderDatasets(filteredData);
+            });
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchCollections();
+            setupSearch();
+        });
+    </script>
