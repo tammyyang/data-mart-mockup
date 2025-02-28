@@ -234,7 +234,7 @@ header {
     font-size: 1.125rem;
     font-weight: 600;
     margin-bottom: 0.75rem;
-    color: var(--dark-text);
+    color: var (--dark-text);
 }
 
 .dataset-desc {
