@@ -1,3 +1,5 @@
+import { renderStars } from './renderStars.js';
+
 export function createDatasetCard(dataset) {
     let modelBadge = '';
     
