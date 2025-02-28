@@ -8,7 +8,7 @@
       "popularity": 4.9,
       "model": "subscription",
       "price": "£1,999",
-      "image": "1.jpg",
+      "image": "images/1.jpg",
       "tags": ["Documentary", "Sports", "Social Impact"],
       "website": "https://www.toddantony.com/",
       "contact": "info@toddantony.com"
@@ -21,7 +21,7 @@
       "popularity": 4.8,
       "model": "one-time",
       "price": "£2,499",
-      "image": "2.jpg",
+      "image": "images/2.jpg",
       "tags": ["Fine Art", "Conceptual", "Portrait"],
       "website": "https://www.juliafullerton-batten.com/",
       "contact": "info@juliafullerton-batten.com"
@@ -34,7 +34,7 @@
       "popularity": 4.7,
       "model": "subscription",
       "price": "£1,799",
-      "image": "3.jpg",
+      "image": "images/3.jpg",
       "tags": ["Fashion", "Beauty", "Editorial"],
       "website": "https://www.liamarthur.com/",
       "contact": "info@liamarthur.com"
@@ -47,7 +47,7 @@
       "popularity": 4.6,
       "model": "one-time",
       "price": "£2,199",
-      "image": "4.jpg",
+      "image": "images/4.jpg",
       "tags": ["Portrait", "Historical", "Conceptual"],
       "website": "https://www.drewgardner.com/",
       "contact": "info@drewgardner.com"
@@ -60,7 +60,7 @@
       "popularity": 4.8,
       "model": "subscription",
       "price": "£1,899",
-      "image": "5.jpg", 
+      "image": "images/5.jpg", 
       "tags": ["Documentary", "Portrait", "Fine Art"],
       "website": "https://www.alystomlinson.co.uk/",
       "contact": "info@alystomlinson.co.uk"
