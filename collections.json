@@ -2,68 +2,69 @@
   "collections": [
     {
       "id": "1",
-      "provider": "Barbara Walker",
-      "title": "Barbara Walker - Contemporary Portraits",
-      "description": "A collection of Barbara Walker's powerful portraits exploring themes of gender, race, representation, and power.",
-      "popularity": 4.8,
+      "provider": "Todd Antony",
+      "title": "Todd Antony - Flying Stars",
+      "description": "Award-winning series capturing the Flying Stars amputee football team of Sierra Leone.",
+      "popularity": 4.9,
       "model": "subscription",
       "price": "£1,999",
       "image": "1.jpg",
-      "tags": ["Contemporary", "Portraits", "Social Commentary"],
-      "website": "https://www.barbarawalker.co.uk/",
-      "contact": "licensing@dacs.org.uk"
+      "tags": ["Documentary", "Sports", "Social Impact"],
+      "website": "https://www.toddantony.com/",
+      "contact": "info@toddantony.com"
     },
     {
       "id": "2",
-      "provider": "Charmaine Watkiss",
-      "title": "Charmaine Watkiss - Mythological Drawings",
-      "description": "A collection of Charmaine Watkiss's intricate drawings exploring themes of ritual, tradition, ancestry, and mythology.",
-      "popularity": 4.7,
+      "provider": "Julia Fullerton-Batten",
+      "title": "Julia Fullerton-Batten - Fine Art Collection",
+      "description": "A curated collection of Julia's acclaimed fine art photography projects.",
+      "popularity": 4.8,
       "model": "one-time",
-      "price": "£1,499",
+      "price": "£2,499",
       "image": "2.jpg",
-      "tags": ["Drawing", "Mythology", "Cultural Heritage"],
-      "website": "https://www.charmainewatkiss.com/",
-      "contact": "licensing@dacs.org.uk"
+      "tags": ["Fine Art", "Conceptual", "Portrait"],
+      "website": "https://www.juliafullerton-batten.com/",
+      "contact": "info@juliafullerton-batten.com"
     },
     {
       "id": "3",
-      "provider": "Duncan Grant",
-      "title": "Duncan Grant - Bloomsbury Group Archive",
-      "description": "A comprehensive collection of Duncan Grant's works, including those featured in Dior's Summer 2023 menswear collection.",
-      "popularity": 4.9,
+      "provider": "Liam Arthur",
+      "title": "Liam Arthur - Fashion & Beauty Portfolio",
+      "description": "High-end fashion and beauty photography from AOP award-winning photographer Liam Arthur.",
+      "popularity": 4.7,
       "model": "subscription",
-      "price": "£2,499",
+      "price": "£1,799",
       "image": "3.jpg",
-      "tags": ["Bloomsbury Group", "20th Century", "Fashion Inspiration"],
-      "website": "https://www.charleston.org.uk/duncan-grant/",
-      "contact": "licensing@dacs.org.uk"
+      "tags": ["Fashion", "Beauty", "Editorial"],
+      "website": "https://www.liamarthur.com/",
+      "contact": "info@liamarthur.com"
     },
     {
       "id": "4",
-      "provider": "Tom Hammick",
-      "title": "Tom Hammick - Mythological Worlds",
-      "description": "A collection of Tom Hammick's vibrant works featuring mythological worlds, as seen in FOLK's 2023 winter collection.",
+      "provider": "Drew Gardner",
+      "title": "Drew Gardner - Historical Descendants",
+      "description": "Unique series featuring descendants of historical figures, including Frederick Douglass.",
       "popularity": 4.6,
       "model": "one-time",
-      "price": "£1,799",
+      "price": "£2,199",
       "image": "4.jpg",
-      "tags": ["Contemporary", "Mythology", "Fashion Collaboration"],
-      "website": "https://www.tomhammick.com/",
-      "contact": "licensing@dacs.org.uk"
+      "tags": ["Portrait", "Historical", "Conceptual"],
+      "website": "https://www.drewgardner.com/",
+      "contact": "info@drewgardner.com"
     },
     {
       "id": "5",
-      "provider": "Sidney Nolan",
-      "title": "Sidney Nolan - Antarctica Series",
-      "description": "A unique collection of Sidney Nolan's Antarctica series, featured in Australian Post's commemorative stamp set.",
+      "provider": "Alys Tomlinson",
+      "title": "Alys Tomlinson - Award-Winning Series",
+      "description": "Collection featuring Alys Tomlinson's critically acclaimed work, including Taylor Wessing prize-winning images.",
       "popularity": 4.8,
       "model": "subscription",
-      "price": "£2,199",
-      "image": "5.jpg",
-      "tags": ["20th Century", "Landscape", "Australian Art"],
-      "website": "https://www.sidneynolantrust.org/",
-      "contact": "licensing@dacs.org.uk"
+      "price": "£1,899",
+      "image": "5.jpg", 
+      "tags": ["Documentary", "Portrait", "Fine Art"],
+      "website": "https://www.alystomlinson.co.uk/",
+      "contact": "info@alystomlinson.co.uk"
     }
   ]
 }
+
