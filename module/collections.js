@@ -81,7 +81,7 @@ function renderStars(popularity) {
     if (halfStar) {
         stars += '★';
     }
-    for (let i = 0; i < emptyStars; i++) {
+    for (let i = 0; < emptyStars; i++) {
         stars += '☆';
     }
     
