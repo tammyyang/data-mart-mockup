@@ -106,9 +106,9 @@ header {
 }
 
 .btn-primary {
-    background-color: #027fe5;
+    background-color: #000000;
     color: var(--white);
-    border: 1px solid #027fe5;
+    border: 1px solid #000000;
 }
 
 .card-btn:hover {
